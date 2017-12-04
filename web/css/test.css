@@ -1,4 +1,12 @@
 
+li {
+	list-style-type: none;
+}
+
+em {
+	font-style: normal;
+}
+
 .rightmain {
 	display: -webkit-flex;
 	display: flex;
@@ -45,8 +53,183 @@ a.item {
 	display: table-cell;
 	text-decoration: none;
 }
+
 .panel-body .col-md-3 button {
 	margin-left: 80px;
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+.navbar .topMessage {
+	margin-left: 100px; 
+	margin-right: 100px;
+}
+
+.header-logo {
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.ff-shop {
+	background-image: url(../img/welcome.png);
+	background-position: 40% 0px;
+}
+
+.shop-title{
+	padding: 24px;
+	text-align: center;
+}
+
+.detail {
+	margin: 10px auto 0px;
+}
+
+.ff-icon-font {
+	float: left;
+}
+
+.ff-store .ff-icon-font {
+	line-height: 26px;
+}
+
+.ff-increase {
+	margin-right: 8px;
+}
+
+.ff-text {
+	text-align: center;
+	float: left;
+	width: 48px;
+	height: 30px;
+}
+
+.topMessage a:hover {
+	background-color: #F00;
+}
+
+.navbar-menu {
+	background-image: linear-gradient(to top, #5bc0de, #cde7f5, #FFF);
+	box-shadow: 0px 2px 10px #383838CF;
+}
+
+.ff-property-type {
+	line-height: 30px;
+	margin-right: 20px;
+}
+
+.navbar-nav-item:hover {
+	background-color: #bce8f1;
+}
+
+.ff-header {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	max-width: 600px;
+}
+
+.header-input {
+	margin-top: 10px;
+	max-width: 500px;
+}
+
+.page {
+	margin-top: 20px;
+}
+
+.ff-main-title {
+	text-overflow: wrap;
+}
+
+.detail-price {
+	height: 30px;
+	background-color: #fff2e8;
+}
+
+.ff-property-type {
+	display: inline;
+	float: left;
+	width: 60px;
+	color: #6c6c6c;
+}
+
+.ff-rmb {
+	font-family: verdana,arial;
+}
+
+.ff-meta {
+	padding: 0px;
+}
+
+.ff-meta .promo-type strong {
+	position: relative;
+	top: -2px;
+	vertical-align: middle;
+	padding-right: 5px;
+	font-size: 24px;
+    font-weight: 700;
+    font-family: Tahoma,Arial,Helvetica,sans-serif;
+    color: #f40;
+    overflow: hidden;
+}
+
+.ff-hidden {
+	display: none;
+}
+
+.ff-stop {
+	max-width: 220px;
+	margin: -10px 0px 20px 60px;
+	color: #F00;
+	border: 1px solid #FF1111;
+	padding: auto;
+}
+
+.ff-btn-buy {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	border: 1px solid #CCC;
+	border-color: #f0cab6;
+	background: #ffe4d0;
+	text-align: center;
+	margin-right: 9px;
+	line-height: 40px;
+}
+
+.ff-btn-buy a {
+	color: #e5511d;
+	text-decoration: none;
+}
+
+.ff-btn-buy:hover {
+	background: #f97;
+}
+
+.ff-btn-add {
+	display: inline-block;
+	width: 180px;
+	height: 40px;
+	border-color: 1px solid #F40;
+	background: #F40;
+	text-align: center;
+	line-height: 40px;
+}
+
+.ff-btn-add a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+.ff-btn-add:hover {
+	background: #de3b00;
+}
+
+.ff-disable-increase {
+	cursor: not-allowed;
+}
+
+.ff-disable,.ff-disable:focus,.ff-disable:active,.ff-disable:visited {
+	color: #ccc;
+	background: #ededed;
+	cursor: not-allowed;
 }
