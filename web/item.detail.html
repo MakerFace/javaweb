@@ -19,14 +19,14 @@
 			<div class="container-fluid">
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li><a href="#" target="_top" class="navbar-brand"><span>登录</span></a></li>
-						<li><a href="#" target="_top" class="navbar-brand"><span>注册</span></a></li>
-						<li><a href="#" target="_top" class="navbar-brand"><span>商城</span></a></li>
+						<li><a href="login.html" target="_top" class="navbar-brand"><span>登录</span></a></li>
+						<li><a href="signin.html" target="_top" class="navbar-brand"><span>注册</span></a></li>
+						<li><a href="index.html" target="_top" class="navbar-brand"><span>商城</span></a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#" target="_top" class="navbar-brand"><span>首页</span></a></li>
+						<li><a href="index.html" target="_top" class="navbar-brand"><span>首页</span></a></li>
 						<li><a href="#" target="_top" class="navbar-brand"><span>个人中心</span></a></li>
-						<li><a href="#" target="_top" class="navbar-brand"><span>购物车</span></a></li>
+						<li><a href="cart.html" target="_top" class="navbar-brand"><span>购物车</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -48,7 +48,7 @@
 	<div class="shop-header">
 		<div class="ff-shop" id="hd"><!--放welcome-->
 			<div class="shop-header-banner">
-				<div class="shop-title"><img src="img/feifeilogo2.png" alt=""></div>
+				<div class="shop-title"><img src="img/feifeilogo2.png" alt="" style="margin-bottom: 30px;"></div>
 			</div>
 		</div>
 	</div>
@@ -61,30 +61,32 @@
 				<div class="panel-body">
 					<div class="pull-left col-md-4"><!--info-left放商品图片-->
 						<div class="ff-pic">
-							<img id="ff-item-pic" src="img/样图.jpg" alt="" style="max-width: 350px;max-height: 600px;">
+							<img id="ff-item-pic" src="img/yanwo.jpg" alt="" style="max-width: 350px;max-height: 600px;">
 						</div>
 					</div>
 					<div class="pull-right col-md-8">
-						<div class="">
+						<div>
 							<div class="ff-title">
-								<h3 id="ff-title" class="ff-main-title" data-title="越南G7咖啡1600g 100条装 原装进口三合一香浓冲饮咖啡粉速溶包邮">越南G7咖啡1600g 100条装原装进口三合一香浓冲饮咖啡粉速溶包邮<h3>
-								<p class="ff-subtitle"><li>越南G7三合一速溶咖啡1600克16g*100条大包装，一袋包邮，偏远地区除外！</li></p>
+								<h3 id="ff-title" class="ff-main-title">越南G7咖啡1600g 100条装原装进口三合一香浓冲饮咖啡粉速溶包邮</h3>
+								<p class="ff-subtitle">
+									<li id="ff-subtitle">越南G7三合一速溶咖啡1600克16g*100条大包装，一袋包邮，偏远地区除外！</li>
+								</p>
 							</div>
 							<ul class="ff-meta">
-								<li id="price-box" class="detail-price">
+								<li id="priceBox" class="detail-price">
 									<span class="ff-property-type">价格</span>
 									<div class="ff-property-cont">
-										<strong id="detail-price" style="font-size: 14px; color: rgb(60, 60, 60); font-weight: 400; text-decoration: line-through; line-height: 30px;">
-											<em>￥</em><em>123.00</em>
+										<strong style="font-size: 14px; color: rgb(60, 60, 60); font-weight: 400; text-decoration: line-through; line-height: 30px;">
+											<em>￥</em><em id="detailPrice">123.00</em>
 										</strong>
 									</div>
 								</li>
-								<li id="promo-price" class="detail-price">
+								<li class="detail-price">
 									<span class="ff-property-type">飞飞价</span>
 									<div class="promo-type">
 										<strong>
 											<em class="ff-rmb">￥</em>
-											<em class="ff-rmb">54.80</em>
+											<em class="ff-rmb" id="promoPrice">54.80</em>
 										</strong>
 										<span class="promo-type">优惠促销</span>
 									</div>
@@ -135,4 +137,9 @@
 		</div>
 	</div>
 </body>
+
+<script>
+	window.onload=onLoad();
+</script>
+
 </html>

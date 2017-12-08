@@ -111,3 +111,82 @@ function addToTotal(to,tm) {
 	totalOrder.innerHTML = sum(totalOrder.innerHTML,to);
 	totalMoney.innerHTML = sum(totalMoney.innerHTML,tm);
 }
+
+
+/*这里要写一个json数据，id=商品id的货物要从购物车中删除{
+	action:del
+	id:id
+}*/
+function delOrder(argument) {
+	// body...
+	var id = argument.parentNode.dataset.id;
+	var name = document.getElementById(id + 'name').innerHTML;
+	var sure = confirm('确定要删除：' + name + '吗？');
+	if(sure){
+		//提交删除表单
+		var jsonData = {
+			'action' : 'del',
+			'id' : id
+		}
+		subJson(jsonData);
+	}
+	else{
+		//什么都不做
+		alert('T_T吓死宝宝了！');
+	}
+}
+
+//提交删除表单
+function delAll() {
+	// body...
+	var items = document.getElementsByName('items[]');
+	var total = 0;
+	var jsonData = {
+		'action':'del'
+	}
+	for(var i = 0;i < items.length; i++){
+		if(items[i].checked){
+			total += sum(total,document.getElementById(items[i].value+'sum').innerHTML);
+			jsonData['id' + i] = items[i].value;
+		}
+	}
+	if(total == 0)
+	{
+		alert('请至少选择一件商品！');
+	}
+	else{
+		subJson(jsonData);
+	}
+}
+
+function buy() {
+	// body...
+	var items = document.getElementsByName('items[]');
+	var total = 0;
+	var jsonData = {
+		'action' : 'buy'
+	}
+	for(var i = 0;i < items.length;i++){
+		if(items[i].checked){
+			total++;
+			jsonData['id' + i] = items[i].value;
+		}
+	}
+	if(total > 0){
+		subJson(jsonData);
+	}
+	else
+	{
+		alert('nothing');
+	}
+}
+
+function subJson(argument) {
+	// body...
+	alert(JSON.stringify(argument));
+	$.post('/Cart',
+		argument,
+		function(status){
+			return status;
+	});
+}

@@ -29,6 +29,15 @@
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Detail</servlet-name>
+        <servlet-class>ServletPackage.Detail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Detail</servlet-name>
+        <url-pattern>/Detail</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>

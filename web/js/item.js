@@ -97,3 +97,53 @@ function add() {
 	var count = $("#iptAmount").val();
 	alert("加入购物车成功！\n物品：" + shopname + "\n数量：" + count);
 }
+
+function onLoad() {
+	// body...
+	var shopid = getQueryString('shopId');
+	var json = {
+		method:'post',
+		body:JSON.stringify({
+			shopId: shopid
+		})
+	};
+	sendJson(json);
+}
+
+
+//发送一个商品id
+function sendJson(argument) {
+	// body...
+	var url = '/OnDetailLoad';
+	fetch(url,argument)
+	.then((response)=>{
+		return response.json();
+	})
+	.then((json)=>{
+		//物品详情处理
+		var img = document.getElementById('ff-item-pic');
+		var title = document.getElementById('ff-title');
+		var subTitle = document.getElementById('ff-subtitle');
+		//两个价格相等就隐藏
+		var priceBox = document.getElementById('priceBox');
+		var detailPrice = document.getElementById('detailPrice');
+		var shopPrice = document.getElementById('promoPrice');
+		var stock = document.getElementById('SpanStock');
+		img.src = json.img;
+		title.innerHTML = json.title;
+		subTitle.innerHTML = json.subTitle;
+		detailPrice.innerHTML = json.marketPrice;
+		shopPrice.innerHTML = json.shopPrice;
+		if(json.marketPrice == json.shopPrice)
+			priceBox.style='display: none;';
+		stock.innerHTML = json.stocks;
+	});
+}
+
+function getQueryString(name) { 
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+	var r = window.location.search.substr(1).match(reg); 
+	if (r != null)
+		return unescape(r[2]);
+	return null; 
+}

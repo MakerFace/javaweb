@@ -91,6 +91,7 @@ a:focus {
 .panel-body .row {
 	border: 1px solid #CCCC;
 	background: #fcfcfc;
+	margin-bottom: 5px;
 }
 
 .ff-inner {

@@ -125,7 +125,7 @@
 									</a>
 								</div>
 								<div class="item-base-info">
-									<a href="#" target="_blank" title="AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g" class="item-title">AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g</a>
+									<a href="#" target="_blank" title="AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g" class="item-title" id="001name">AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g</a>
 								</div>
 							</div>
 						</div>
@@ -159,8 +159,8 @@
 							</div>
 						</div>
 						<div class="ff ff-op col-sm-1">
-							<div class="ff-inner">
-								<a href="javascript:void(0)" class="makePoint" onclick="del()">删除</a>
+							<div class="ff-inner" data-id="002">
+								<a href="javascript:void(0)" class="makePoint" onclick="delOrder(this)">删除</a>
 							</div>
 						</div>
 					</div>
@@ -180,7 +180,7 @@
 									</a>
 								</div>
 								<div class="item-base-info">
-									<a href="#" target="_blank" title="AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g" class="item-title">AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g</a>
+									<a href="#" target="_blank" title="AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g" class="item-title" id="002name">AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g</a>
 								</div>
 							</div>
 						</div>
@@ -215,7 +215,7 @@
 						</div>
 						<div class="ff ff-op col-sm-1">
 							<div class="ff-inner">
-								<a href="javascript:void(0)" class="makePoint" onclick="del()">删除</a>
+								<a href="javascript:void(0)" class="makePoint" onclick="delOrder(this)">删除</a>
 							</div>
 						</div>
 					</div>
@@ -232,7 +232,7 @@
 								</div>&nbsp;全选
 							</li>
 							<li class="operations">
-								<a href="#" hidefocus="true" class="deleteSelect">删除</a>
+								<a href="javascript:void(0);" hidefocus="true" class="deleteSelect" onclick="delAll();">删除</a>
 							</li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
@@ -251,7 +251,7 @@
 								</strong>
 							</li>
 							<li class="btn-area" style="float: right;">
-								<a href="javascript:void(0);" id="go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算"><span>结&nbsp;算</span>
+								<a href="javascript:void(0);" id="go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算" onclick="buy()"><span>结&nbsp;算</span>
 									<b></b>
 								</a>
 							</li>
