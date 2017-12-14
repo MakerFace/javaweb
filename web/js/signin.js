@@ -18,6 +18,7 @@ function onClickSubmit() {
         }
         else
         {
+            window.localStorage.setItem("loginName",loginForm.logname.value);
             window.location.href = jsonfile.login;
             return false;
         }

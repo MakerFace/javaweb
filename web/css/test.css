@@ -49,9 +49,13 @@ a.listitem:hover {
 	color: #BCE8F1;
 }
 
-a.item {
+a .item {
 	display: table-cell;
 	text-decoration: none;
+}
+
+a .item:hover {
+	color: #F008;
 }
 
 .panel-body .col-md-3 button {
@@ -107,11 +111,6 @@ a.item {
 	background-color: #F00;
 }
 
-.navbar-menu {
-	background-image: linear-gradient(to top, #5bc0de, #cde7f5, #FFF);
-	box-shadow: 0px 2px 10px #383838CF;
-}
-
 .ff-property-type {
 	line-height: 30px;
 	margin-right: 20px;
@@ -153,7 +152,7 @@ a.item {
 }
 
 .ff-rmb {
-	font-family: verdana,arial;
+	font-family: verdana, arial, serif;
 }
 
 .ff-meta {
@@ -178,7 +177,7 @@ a.item {
 
 .ff-stop {
 	max-width: 220px;
-	margin: -10px 0px 20px 60px;
+	margin: -10px 0 20px 60px;
 	color: #F00;
 	border: 1px solid #FF1111;
 	padding: auto;
@@ -188,8 +187,7 @@ a.item {
 	display: inline-block;
 	width: 100px;
 	height: 40px;
-	border: 1px solid #CCC;
-	border-color: #f0cab6;
+	border: 1px solid #f0cab6;
 	background: #ffe4d0;
 	text-align: center;
 	margin-right: 9px;

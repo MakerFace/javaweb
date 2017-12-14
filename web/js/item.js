@@ -1,4 +1,7 @@
 
+var shopid;
+var name;
+
 function compare(value1, value2) {
 	// body...
 	if(parseInt(value1) > parseInt(value2))
@@ -82,6 +85,7 @@ function buy() {
 		action:buy
 	}
 	*/
+	AddOrBuy('buy','购买');
 }
 
 function add() {
@@ -93,26 +97,122 @@ function add() {
 		acition:add
 	}
 	*/
+	AddOrBuy('add','加入购物车');
+}
+
+function AddOrBuy(action,infomation){
 	var shopname = $("#ff-title").text();
 	var count = $("#iptAmount").val();
-	alert("加入购物车成功！\n物品：" + shopname + "\n数量：" + count);
+	var json = {
+		method:'post',
+		body:JSON.stringify({
+			'action':action,
+			'shopId':shopid,
+			'userName':name,
+			'count':count
+		})
+	};
+	sendJson(json,function(){
+		alert(infomation + "成功！\n物品：" + shopname + "\n数量：" + count);
+		onLoad();
+	},function(){
+		alert(infomation + "失败！\n物品：" + shopname + "\n数量：" + count);
+	});
 }
 
 function onLoad() {
 	// body...
-	var shopid = getQueryString('shopId');
+	shopid = getQueryString('shopId');
+    name = window.localStorage.getItem('loginName');
 	var json = {
 		method:'post',
 		body:JSON.stringify({
-			shopId: shopid
+			'action':'initialize',
+			'shopId':shopid
 		})
 	};
-	sendJson(json);
+	sendJson(json,loadItem,function(){
+		alert('加载失败，请检查网络状况！');
+	});
+    name = window.localStorage.getItem("loginName");
+    if(name == null){
+        /*<a href="login.html" class="navbar-brand">登录</a>
+        <a href="signup.html" class="navbar-brand">注册</a>*/
+        var navLeft = document.getElementById('navLeft');
+        var loginLi = document.createElement('li');
+        var signupLi = document.createElement('li');
+        var aLogin = document.createElement('a');
+        var aSignup = document.createElement('a');
+        aLogin.href = 'login.html';
+        aLogin.innerHTML = '登录';
+        aSignup.href = 'signup.html';
+        aSignup.innerHTML = '注册';
+        navLeft.appendChild(loginLi);
+        loginLi.appendChild(aLogin);
+        navLeft.appendChild(signupLi);
+        signupLi.appendChild(aSignup);
+    }
+    else{
+    	cartNum(name);
+        var navLeft = document.getElementById('navLeft');
+        var loginLi = document.createElement('li');
+        var signupLi = document.createElement('li');
+        var aLogin = document.createElement('a');
+        var aSignup = document.createElement('a');
+        aLogin.href = 'personal.html';
+        aLogin.innerHTML = name;
+        aSignup.href = 'javascript:void(0);';
+        aSignup.onclick = function(){
+            onClickQuit();
+        };
+        aSignup.innerHTML = '退出';
+        navLeft.appendChild(loginLi);
+        loginLi.appendChild(aLogin);
+        navLeft.appendChild(signupLi);
+        signupLi.appendChild(aSignup);
+    }
+}
+
+function cartNum(userName) {
+	// body...
+	var url = '/Personal';
+	fetch(url,{
+		method:'post',
+		body:JSON.stringify({
+			'action':'cartNum',
+			'name':userName
+		})
+	}).then((response)=>{
+		return response.json();
+	}).then((json)=>{
+		var num = document.getElementById('cartCount');
+		num.innerHTML = json.cartCount;
+	});
+}
+
+function loadItem(json) {
+	// body...
+	var img = document.getElementById('ff-item-pic');
+	var title = document.getElementById('ff-title');
+	var subTitle = document.getElementById('ff-subtitle');
+	//两个价格相等就隐藏
+	var priceBox = document.getElementById('priceBox');
+	var detailPrice = document.getElementById('detailPrice');
+	var shopPrice = document.getElementById('promoPrice');
+	var stock = document.getElementById('SpanStock');
+	img.src = json.img;
+	title.innerHTML = json.title;
+	subTitle.innerHTML = json.subTitle;
+	detailPrice.innerHTML = json.marketPrice;
+	shopPrice.innerHTML = json.shopPrice;
+	if(json.marketPrice == json.shopPrice)
+		priceBox.style='display: none;';
+	stock.innerHTML = json.stocks;
 }
 
 
 //发送一个商品id
-function sendJson(argument) {
+function sendJson(argument,fun1,fun2) {
 	// body...
 	var url = '/OnDetailLoad';
 	fetch(url,argument)
@@ -121,29 +221,31 @@ function sendJson(argument) {
 	})
 	.then((json)=>{
 		//物品详情处理
-		var img = document.getElementById('ff-item-pic');
-		var title = document.getElementById('ff-title');
-		var subTitle = document.getElementById('ff-subtitle');
-		//两个价格相等就隐藏
-		var priceBox = document.getElementById('priceBox');
-		var detailPrice = document.getElementById('detailPrice');
-		var shopPrice = document.getElementById('promoPrice');
-		var stock = document.getElementById('SpanStock');
-		img.src = json.img;
-		title.innerHTML = json.title;
-		subTitle.innerHTML = json.subTitle;
-		detailPrice.innerHTML = json.marketPrice;
-		shopPrice.innerHTML = json.shopPrice;
-		if(json.marketPrice == json.shopPrice)
-			priceBox.style='display: none;';
-		stock.innerHTML = json.stocks;
+		if(json.load == 'false')
+		{
+            fun2();
+		}
+		else
+		{
+            fun1(json);
+		}
 	});
 }
 
+//地址栏的参数
 function getQueryString(name) { 
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
 	var r = window.location.search.substr(1).match(reg); 
 	if (r != null)
 		return unescape(r[2]);
 	return null; 
+}
+
+function onClickQuit() {
+    // body...
+    var tag = confirm("是否退出");
+    if(tag){
+        window.localStorage.clear();
+        window.location.reload();
+    }
 }

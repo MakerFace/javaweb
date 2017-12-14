@@ -8,41 +8,60 @@
 	<link rel="stylesheet" href="css/bootstrap-3.3.7-dist/css/bootstrap.css">
 	<link rel="stylesheet" href="css/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/cart.css">
+	<link rel="stylesheet" href="css/navbar.css">
 	<script src="css/bootstrap-3.3.7-dist/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 	<script src="css/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"></script>
 	<script src="css/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="js/cart.js"></script>
+	<script src="js/cart.js" type="text/javascript"></script>
 </head>
 <body>
 	<!-- navbar -->
-	<div class="navbar-menu" role="navigation">
-		<nav class="nav navbar-none">
-			<div class="container-fluid">
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li><a href="#" target="_top" class="navbar-brand"><span>登录</span></a></li>
-						<li><a href="#" target="_top" class="navbar-brand"><span>注册</span></a></li>
-						<li><a href="#" target="_top" class="navbar-brand"><span>商城</span></a></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#" target="_top" class="navbar-brand"><span>首页</span></a></li>
-						<li><a href="#" target="_top" class="navbar-brand"><span>个人中心</span></a></li>
-						<li><a href="#" target="_top" class="navbar-brand"><span>购物车</span></a></li>
-					</ul>
-				</div>
+	<div class="navbar" role="navigation">
+		<nav class="nav navbar-menu">
+			<div class="nav-left">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="#" target="_top" id="userName">
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0);" onclick="onClickQuit()" target="_top">
+							<span>退出</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="nav-right">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="index.html" target="_top">
+							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>首页
+						</a>
+					</li>
+					<li>
+						<a href="cart.html" target="_top">
+							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>购物车<span id="cartCount" class="cartCount" aria-hidden="true">0</span>
+						</a>
+					</li>
+					<li>
+						<a href="personal.html" target="_top">
+							<span class="glyphicon glyphicon-user"></span>个人中心
+						</a>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</div>
 	<!-- header -->
-	<div class="container center-block ff-header">
+	<div class="container center-block ff-header" style="max-width: 500px;">
 		<div class="header-logo pull-left col-sd-4">
 			<a href="#">
 				<img src="img/飞飞logo.png" alt="" style="width: 60px; height: 60px;">
 			</a>
 		</div>
-		<div class="header-input input-group col-sd-4">
+		<div class="header-input input-group col-sd-4" style="margin-top: 13px;">
 			<input type="text" class="form-control" placeholder="请输入搜索内容" name="search-input">
-			<span class="input-group-btn"  style="vertical-align: center;">
+			<span class="input-group-btn">
 				<button class="btn btn-default" type="submit">搜索</button>
 			</span>
 		</div>
@@ -54,7 +73,7 @@
 			<ul class="nav nav-tabs">
 				<li role="presentation" class="current"><a href="#">
 					<em>全部商品</em>
-					<span class="number">2</span>
+					<span class="number" id="shopNum"></span>
 					<span class="pipe"></span>
 				</a></li>
 				<li role="presentation"><a href="#">
@@ -102,7 +121,7 @@
 					飞飞商店
 				</div>
 				<!-- container只有使用了fluid才是相对于父物体的 -->
-				<div id="oderHolder" class="panel-body container-fluid">
+				<div id="orderHolder" class="panel-body container-fluid">
 					<!-- 这里放所有的商品 -->
 					<!-- 现在放的是item0 ：
 					要求：第一个是input组件（选择框），id必须为商品idchk；
@@ -110,158 +129,54 @@
 					第三个是预留
 					第四个是单价，id修改为商品id+pri，单机修改span.innerhtml
 					第五个是数量输入框，父div需要修改id，就是商品id，子物体input需要修改id为商品id+ipt
-					-->
-					<div id0="orderItem" class="row">
-						<div class="ff ff-chk col-sm-1">
-							<div class="ff-inner">
-								<input class="checkBoxItem" id="001chk" type="checkbox" name="items[]" value="001" onchange="selectItem(this)">
-							</div>
-						</div>
-						<div class="ff ff-item col-sm-3">
-							<div class="ff-inner">
-								<div class="item-pic">
-									<a href="#" target="_blank" class="makePoint">
-										<img src="img/coffe.jpg" alt="" class="itempic">
-									</a>
-								</div>
-								<div class="item-base-info">
-									<a href="#" target="_blank" title="AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g" class="item-title" id="001name">AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g</a>
-								</div>
-							</div>
-						</div>
-						<div class="ff ff-info col-sm-1">
-							<div class="item-props">
-								
-							</div>
-						</div>
-						<div class="ff ff-price col-sm-2">
-							<div class="ff-inner">
-								<div class="item-price">
-									<div class="price-content">
-										<div class="price-line"><em class="price-now">￥<span id="001pri">48.00</span></em></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="ff ff-amount col-sm-3">
-							<div class="ff-inner">
-								<div class="item-amount" data-id="001">
-									<a href="javascript:void(0);" onclick="onclickMinus(this)">-</a>
-									<input type="text" value="1" id="001ipt" class="text text-amount">
-									<a href="javascript:void(0);" onclick="onclickPlus(this)">+</a>
-								</div>
-							</div>
-						</div>
-						<div class="ff ff-sum col-sm-1">
-							<div class="ff-inner">
-								<em tabindex="0" class="itemSum number">￥<span id="001sum">48.00</span></em>
-								<div class="itemLottery"></div>
-							</div>
-						</div>
-						<div class="ff ff-op col-sm-1">
-							<div class="ff-inner" data-id="002">
-								<a href="javascript:void(0)" class="makePoint" onclick="delOrder(this)">删除</a>
-							</div>
-						</div>
-					</div>
+				-->
 
-
-					<div id0="orderItem" class="row">
-						<div class="ff ff-chk col-sm-1">
-							<div class="ff-inner">
-								<input class="checkBoxItem" id="002chk" type="checkbox" name="items[]" value="002" onchange="selectItem(this)">
-							</div>
-						</div>
-						<div class="ff ff-item col-sm-3">
-							<div class="ff-inner">
-								<div class="item-pic">
-									<a href="#" target="_blank" class="makePoint">
-										<img src="img/coffe.jpg" alt="" class="itempic">
-									</a>
-								</div>
-								<div class="item-base-info">
-									<a href="#" target="_blank" title="AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g" class="item-title" id="002name">AA级炭烧咖啡豆 精选生咖啡豆新鲜深度烘培死亡之愿碳烧咖啡 454g</a>
-								</div>
-							</div>
-						</div>
-						<div class="ff ff-info col-sm-1">
-							<div class="item-props">
-								
-							</div>
-						</div>
-						<div class="ff ff-price col-sm-2">
-							<div class="ff-inner">
-								<div class="item-price">
-									<div class="price-content">
-										<div class="price-line"><em class="price-now">￥<span id="002pri">48.00</span></em></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="ff ff-amount col-sm-3">
-							<div class="ff-inner">
-								<div class="item-amount" data-id="002">
-									<a href="javascript:void(0);" onclick="onclickMinus(this)">-</a>
-									<input type="text" value="1" id="002ipt" class="text text-amount">
-									<a href="javascript:void(0);" onclick="onclickPlus(this)">+</a>
-								</div>
-							</div>
-						</div>
-						<div class="ff ff-sum col-sm-1">
-							<div class="ff-inner">
-								<em tabindex="0" class="itemSum number">￥<span id="002sum">48.00</span></em>
-								<div class="itemLottery"></div>
-							</div>
-						</div>
-						<div class="ff ff-op col-sm-1">
-							<div class="ff-inner">
-								<a href="javascript:void(0)" class="makePoint" onclick="delOrder(this)">删除</a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
-			<div id="floatBarHolder" class="float-bar-holder">
-				<div class="navbar navbar-none navbar-fixed-bottom">
-					<div class="collapse navbar-collapse float-bar-wrapper">
-						<ul class="nav navbar-nav">
-							<li class="select-all">
-								<div class="cart-checkbox">
-									<input class="checkBoxShop" id="selectAllbox2" type="checkbox" name="select-all" value="true" onchange="selectAll(this);">
-									<label for="selectAllbox2">点击勾选所有商品</label>
-								</div>&nbsp;全选
-							</li>
-							<li class="operations">
-								<a href="javascript:void(0);" hidefocus="true" class="deleteSelect" onclick="delAll();">删除</a>
-							</li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="amount-sum" id="showSelectItems">
-								<span class="txt">已选商品</span>
-								<em id="selectItemsCount">0</em>
-								<span class="txt">件</span>
-							</li>
-							<li class="price-sum">
-								<span class="txt">合计（不含运费）：</span>
-								<strong class="price">
-									<em id="total">
-										<span class="total-symbol">&nbsp;</span>
-										0.00
-									</em>
-								</strong>
-							</li>
-							<li class="btn-area" style="float: right;">
-								<a href="javascript:void(0);" id="go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算" onclick="buy()"><span>结&nbsp;算</span>
-									<b></b>
-								</a>
-							</li>
-						</ul>
-					</div>
+		</div>
+		<div id="floatBarHolder" class="float-bar-holder">
+			<div class="navbar navbar-none navbar-fixed-bottom">
+				<div class="collapse navbar-collapse float-bar-wrapper">
+					<ul class="nav navbar-nav">
+						<li class="select-all">
+							<div class="cart-checkbox">
+								<input class="checkBoxShop" id="selectAllbox2" type="checkbox" name="select-all" value="true" onchange="selectAll(this);">
+								<label for="selectAllbox2">点击勾选所有商品</label>
+							</div>&nbsp;全选
+						</li>
+						<li class="operations">
+							<a href="javascript:void(0);" hidefocus="true" class="deleteSelect" onclick="delAll();">删除</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="amount-sum" id="showSelectItems">
+							<span class="txt">已选商品</span>
+							<em id="selectItemsCount">0</em>
+							<span class="txt">件</span>
+						</li>
+						<li class="price-sum">
+							<span class="txt">合计（不含运费）：</span>
+							<strong class="price">
+								<em id="total">
+									<span class="total-symbol">&nbsp;</span>
+									0.00
+								</em>
+							</strong>
+						</li>
+						<li class="btn-area" style="float: right;">
+							<a href="javascript:void(0);" id="go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算" onclick="buy()"><span>结&nbsp;算</span>
+								<b></b>
+							</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
-	</body>
-	<script type="text/javascript">
-		window.onload = initialize();
-	</script>
-	</html>
+	</div>
+</body>
+<script type="text/javascript">
+	$(document).ready(function () {
+		// body...
+		initialize();
+	});
+</script>
+</html>

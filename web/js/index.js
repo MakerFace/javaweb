@@ -10,35 +10,47 @@ function onLoad() {
 		//最后一个数据是load:bool
 		var length = json.length - 1;
 		var num = 1;
-		if(json[length].loginName == null){
+		//添加分类：<a href="#" target="_blank" class="pull-left listitem">松子</a>
+		var name = window.localStorage.getItem("loginName");
+		if(name == null){
 				/*<a href="login.html" class="navbar-brand">登录</a>
 				<a href="signup.html" class="navbar-brand">注册</a>*/
 				var navLeft = document.getElementById('navLeft');
+				var loginLi = document.createElement('li');
+				var signupLi = document.createElement('li');
 				var aLogin = document.createElement('a');
 				var aSignup = document.createElement('a');
 				aLogin.href = 'login.html';
-				aLogin.className = 'navbar-brand';
 				aLogin.innerHTML = '登录';
 				aSignup.href = 'signup.html';
-				aSignup.className = 'navbar-brand';
 				aSignup.innerHTML = '注册';
-				navLeft.appendChild(aLogin);
-				navLeft.appendChild(aSignup);
+				navLeft.appendChild(loginLi);
+				loginLi.appendChild(aLogin);
+				navLeft.appendChild(signupLi);
+				signupLi.appendChild(aSignup);
 			}
 			else{
 				var navLeft = document.getElementById('navLeft');
+				var loginLi = document.createElement('li');
+				var signupLi = document.createElement('li');
 				var aLogin = document.createElement('a');
 				var aSignup = document.createElement('a');
-				aLogin.href = '#';
-				aLogin.className = 'navbar-brand';
-				aLogin.innerHTML = json[length].loginName;
+				aLogin.href = 'javascript:void(0);';
+				aLogin.onclick = function(){
+					window.location.href = 'personal.html';
+				}
+				aLogin.innerHTML = name;
 				aSignup.href = 'javascript:void(0);';
-				aSignup.className = 'navbar-brand';
+				aSignup.onclick = function(){
+					onClickQuit();
+				};
 				aSignup.innerHTML = '退出';
-				navLeft.appendChild(aLogin);
-				navLeft.appendChild(aSignup);
+				navLeft.appendChild(loginLi);
+				loginLi.appendChild(aLogin);
+				navLeft.appendChild(signupLi);
+				signupLi.appendChild(aSignup);
 			}
-		//添加分类：<a href="#" target="_blank" class="pull-left listitem">松子</a>
+
 		for (var i = 0; i < length;i++) {
 			if(json[i].catId == num){
 				var p = document.getElementById('class'+num);
@@ -46,9 +58,13 @@ function onLoad() {
 				
 				p.appendChild(addA('_blank','pull-left listitem',json[i].shopId,json[i].name));
 				i++;
-				p.appendChild(addA('_blank','pull-left listitem',json[i].shopId,json[i].name));				
+				p.appendChild(addA('_blank','pull-left listitem',json[i].shopId,json[i].name));
 			}
 		}
+
+		//购物车数量
+		cartNum(name);
+
 		//添加轮播图图片 <img src="img/杨幂2.jpg" style="width: 500px;height: auto">
 		//<div class="carousel-caption"> 杨幂2 </div>
 		var counter = 1;
@@ -94,7 +110,7 @@ function onLoad() {
 		for(;j < length;j++){
 			if(json[j].carousel == 1)
 				continue;
-			if(counter%3 == 0)
+			if(counter%4 == 0)
 			{
 				var panelHead = addDiv('panel-heading','有好货');
 				var panelBody = addDiv('panel-body','');
@@ -106,7 +122,7 @@ function onLoad() {
 			var img = addImg(json[j].img,'','part img-responsive center-block','');
 			var span = document.createElement('span');
 			span.className='item';
-			span.innerHTML = json[j].name;
+			span.innerHTML = json[j].title;
 			node.appendChild(img);
 			node.appendChild(span);
 			panelBody.appendChild(node);
@@ -155,5 +171,32 @@ function onClickItem(argument) {
 	}).then((json)=>{
 		var url = json.detailURL;
 		window.location = url;
+	});
+}
+
+function onClickQuit() {
+	// body...
+	var tag = confirm("是否退出");
+	if(tag){
+		window.localStorage.clear();
+		window.location.reload();
+	}
+}
+
+function cartNum(userName) {
+	// body...
+	var url = '/Personal';
+	fetch(url,{
+		method:'post',
+		body:JSON.stringify({
+			'action':'cartNum',
+			'name':userName
+		})
+	}).then((response)=>{
+		return response.json();
+	}).then((json)=>{
+		var num = document.getElementById('cartCount');
+		num.innerHTML = json.cartCount;
+		num.style='color: red;';
 	});
 }
