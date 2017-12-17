@@ -19,7 +19,7 @@ public class MyTools {
             throws ServletException, IOException {
         BufferedReader br = new BufferedReader(
                 new InputStreamReader(request.getInputStream(), charsetName));
-        String line = null;
+        String line;
         StringBuilder sb = new StringBuilder();
         while ((line = br.readLine()) != null) {
             sb.append(line);

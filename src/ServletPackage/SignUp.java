@@ -26,7 +26,6 @@ public class SignUp extends HttpServlet {
         String password = jsonObject.getString("password");
 
         jsonObject.clear();
-        JSONArray jsonArray = new JSONArray();
         //查询数据库，返回json数据
         if (Dao.register(name, password)) {
             //注册成功

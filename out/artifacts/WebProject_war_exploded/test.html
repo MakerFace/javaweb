@@ -6,27 +6,11 @@
 	<link rel="stylesheet" type="text/css" href="css/test.css">
 	<script src="js/test.js" type="text/javascript"></script>
 	<script type="text/javascript" src="css/bootstrap-3.3.7-dist/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/json2.js"></script>
 </head>
 <body class="center-block" id="body">
 	<div id="parent">
-		<a href="javascript:void(0)" onclick="myAjax()" id="btn">
-			<img src="img/background.jpg" class="part" alt="">
-		</a>
+		<button type="button" onclick="readJSON()" style="background-color: #333">获取JSON文件</button>
 	</div>
 </body>
-
-<script type="text/javascript">
-function myAjax(){
-    $.post("/Test",
-    {
-    	name: "Donald Duck",
-        city: "Duckburg"
-    },
-    function (data, status) {
-    	// body...
-        alert("数据" + data + "\n状态" + status);
-        $("#btn").onclick = "";
-    });
-}
-</script>
 </html>

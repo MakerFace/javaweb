@@ -1,0 +1,22 @@
+{
+    "name": "站长工具",
+    "url": "http://tool.chinaz.com",
+    "address": {
+        "city": "厦门",
+        "country": "中国"
+    },
+    "arrayBrowser": [
+        {
+            "name": "Google",
+            "url": "http://www.google.com"
+        },
+        {
+            "name": "Baidu",
+            "url": "http://www.baidu.com"
+        },
+        {
+            "name": "SoSo",
+            "url": "http://www.SoSo.com"
+        }
+    ]
+}

@@ -51,6 +51,23 @@ public class MySQLHelper {
         return num;
     }
 
+    public boolean delete(String sql){
+        try {
+            sqlStmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE);
+            return sqlStmt.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
     public void close() {
         try {
             if (sqlRst != null)

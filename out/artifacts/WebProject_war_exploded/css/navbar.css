@@ -1,0 +1,39 @@
+
+.nav {
+	line-height: 48px;
+}
+
+.navbar-menu {
+	box-shadow: 0px 2px 10px #383838CF;
+}
+
+.nav-left {
+	margin-left: 100px;
+}
+
+.nav-right {
+	margin-right: 150px;
+}
+
+.nav-right .navbar-right {
+	margin-right: 0px;
+}
+
+.navbar-menu .navbar-nav li a {
+	padding: 10px;
+	color: #0008;
+}
+
+.navbar-menu .navbar-nav li a:hover {
+	color: #F008;
+}
+
+.nav {
+	background: #0001;
+}
+
+.cartCount {
+	color: #F00;
+	font-weight: 600;
+	font-size: 16px;
+}

@@ -31,7 +31,11 @@ function samePassword() {
 		return response.json();
 	})
 	.then((jsonfile)=>{
-		var result = JSON.stringify(jsonfile);
-		alert(result);
+		if(jsonfile.register == 'false')
+		{
+			alert('注册失败，用户名已存在！');
+		}
+		else
+			window.location = jsonfile.register;
 	});
 }
